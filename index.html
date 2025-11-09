@@ -22,7 +22,7 @@ const frame = document.getElementById('gameFrame');
 
 // função para atualizar o jogo
 function updateGame() {
-  const game = localStorage.getItem("GameON");
+  const game = localStorage.getItem("game");
   if (!game) return;
   if (game === "https://matgamesystems.github.io/nextworld/") frame.src = "https://matgamesystems.github.io/nextworld/";
   if (game === "https://matgamesystems.github.io/builderblocks/") frame.src = "https://matgamesystems.github.io/builderblocks/";
