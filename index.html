@@ -2,57 +2,39 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Meu Console</title>
+<title>MatGame X - Console</title>
 <style>
-body {
-  margin: 0;
-  background: #000;
-  color: white;
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-#menu {
-  display: flex;
-  gap: 10px;
-  background: #111;
-  padding: 10px;
-}
+body { margin:0; background:#000; display:flex; justify-content:center; align-items:center; height:100vh; }
 iframe#gameFrame {
-  width: 480px;
+  width: 550px;
   height: 360px;
   border: none;
-  background: black;
-  margin-top: 10px;
+  background: #000;
 }
-button {
-  background: #333;
-  border: none;
-  padding: 6px 12px;
-  color: white;
-  cursor: pointer;
-  border-radius: 6px;
-}
-button:hover { background: #555; }
 </style>
 </head>
 <body>
-
-<div id="menu">
-  <button onclick="loadGame('https://matgamesystems.github.io/nextworld//')">Jogo 1</button>
-  <button onclick="loadGame('https://matgamesystems.github.io/builderblocks/')">Jogo 2</button>
-
-</div>
-
-<iframe id="gameFrame" src="https://usuario.github.io/jogo1/"></iframe>
+<iframe id="gameFrame" src=""></iframe>
 
 <script>
-function loadGame(url) {
-  const frame = document.getElementById('gameFrame');
-  frame.src = url; // troca o jogo
-}
-</script>
+// ao carregar a página
+const frame = document.getElementById('gameFrame');
 
+// função para atualizar o jogo
+function updateGame() {
+  const game = localStorage.getItem("GameON");
+  if (!game) return;
+  if (game === "https://matgamesystems.github.io/nextworld/") frame.src = "https://matgamesystems.github.io/nextworld/";
+  if (game === "https://matgamesystems.github.io/builderblocks/") frame.src = "https://matgamesystems.github.io/builderblocks/";
+
+}
+
+// ouvir mudanças
+window.addEventListener("storage", updateGame);
+
+// e carregar o último jogo salvo
+updateGame();
+</script>
 </body>
 </html>
+
