@@ -1,40 +1,24 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<title>MatGame X - Console</title>
-<style>
-body { margin:0; background:#FF6100; display:flex; justify-content:center; align-items:center; height:100vh; }
-iframe#gameFrame {
-  width: 550px;
-  height: 360px;
-  border: none;
-  background: #FF6100;
-}
-</style>
-</head>
-<body>
-<iframe id="gameFrame" src=""></iframe>
-
 <script>
-// ao carregar a página
 const frame = document.getElementById('gameFrame');
 
-// função para atualizar o jogo
+// Função para atualizar o jogo no iframe
 function updateGame() {
   const game = localStorage.getItem("game");
   if (!game) return;
-  if (game === "https://matgamesystems.github.io/nextworld/") frame.src = "https://matgamesystems.github.io/nextworld/";
-  if (game === "https://matgamesystems.github.io/builderblocks/") frame.src = "https://matgamesystems.github.io/builderblocks/";
-
+  frame.src = game;
 }
 
-// ouvir mudanças
-window.addEventListener("storage", updateGame);
+// Verifica a cada meio segundo se mudou
+setInterval(() => {
+  const current = frame.src;
+  const newGame = localStorage.getItem("game");
+  if (newGame && current !== newGame) {
+    frame.src = newGame;
+  }
+}, 500);
 
-// e carregar o último jogo salvo
+// Carrega o último jogo salvo ao iniciar
 updateGame();
 </script>
-</body>
-</html>
+
 
